@@ -116,7 +116,7 @@ $$
 \left( \dfrac{d\tau}{dt} \right) = \sqrt{ - \left( g_{tt} + 2 g_{t\phi} \omega + g_{\phi\phi} \omega^2 \right) }
 $$
 
-- **Explanation**: This equation accounts for both gravitational and rotational time dilation effects. The negative sign under the square root ensures that $d\tau^2$ remains positive (a proper time-like interval).
+- **Explanation**: This equation accounts for both gravitational and rotational time dilation effects. The expression under the square root must be negative to ensure a real, positive proper time interval.
 
 ### 5. Schwarzschild Radius ($r_s$)
 
@@ -126,7 +126,7 @@ $$
 r_s = \dfrac{2 G M}{c^2}
 $$
 
-- **Explanation**: This radius defines the event horizon of a non-rotating black hole with mass $M$. For distances $r \leq r_s$, the classical concepts of space and time break down.
+- **Explanation**: This radius defines the event horizon of a non-rotating black hole with mass $M$. For distances $r \leq r_s$, classical concepts of space and time break down.
 
 ### 6. Total Time Difference Between Two Frames
 
