@@ -78,25 +78,25 @@ $$
 
 #### Metric Components
 
-- **$g_{tt}$** (Time-Time component):
+**Time-Time component ($g_{tt}$):**
 
-  $$
-  g_{tt} = -\left(1 - \dfrac{2 G M r}{r^2 c^2}\right)
-  $$
+$$
+g_{tt} = -\left(1 - \dfrac{2 G M r}{r^2 c^2}\right)
+$$
 
-- **$g_{t\phi}$** (Time-Azimuthal component):
+**Time-Azimuthal component ($g_{t\phi}$):**
 
-  $$
-  g_{t\phi} = -\dfrac{2 G M a}{r^2 c}
-  $$
+$$
+g_{t\phi} = -\dfrac{2 G M a}{r^2 c}
+$$
 
-- **$g_{\phi\phi}$** (Azimuthal-Azimuthal component):
+**Azimuthal-Azimuthal component ($g_{\phi\phi}$):**
 
-  $$
-  g_{\phi\phi} = r^2 + a^2 + \dfrac{2 G M a^2}{r c^2}
-  $$
+$$
+g_{\phi\phi} = r^2 + a^2 + \dfrac{2 G M a^2}{r c^2}
+$$
 
-- **Explanation**: These components describe how spacetime is warped by both the mass and rotation of the celestial body.
+**Explanation:** These components describe how spacetime is warped by both the mass and rotation of the celestial body.
 
 ### 3. Orbital Angular Velocity ($\omega$)
 
