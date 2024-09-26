@@ -15,145 +15,145 @@ The Kerr metric describes the geometry of spacetime around a rotating massive bo
 
 ## Constants and Variables
 
-- \( G \): Gravitational constant (\(6.67430 \times 10^{-11} \, \text{m}^3\,\text{kg}^{-1}\,\text{s}^{-2}\))
-- \( c \): Speed of light in a vacuum (\(299792458 \, \text{m/s}\))
-- \( M \): Mass of the celestial body (in kilograms)
-- \( R \): Radius of the celestial body (in meters)
-- \( k \): Moment of inertia factor (dimensionless), accounting for mass distribution
-- \( \omega \): Angular velocity of the celestial body (in radians per second)
-- \( J \): Total angular momentum of the celestial body (in kg·m²/s)
-- \( a \): Specific angular momentum per unit mass (\(a = \frac{J}{M c}\), in meters)
-- \( r \): Radial distance from the center of the celestial body (in meters)
-- \( \theta \): Polar angle in spherical coordinates (radians), \( \theta = \frac{\pi}{2} \) in the equatorial plane
-- \( \tau \): Proper time experienced by the observer (in seconds)
-- \( t \): Coordinate time (in seconds)
+- $G$: Gravitational constant ($6.67430 \times 10^{-11} \, \text{m}^3\,\text{kg}^{-1}\,\text{s}^{-2}$)
+- $c$: Speed of light in a vacuum ($299792458 \, \text{m/s}$)
+- $M$: Mass of the celestial body (in kilograms)
+- $R$: Radius of the celestial body (in meters)
+- $k$: Moment of inertia factor (dimensionless), accounting for mass distribution
+- $\omega$: Angular velocity of the celestial body (in radians per second)
+- $J$: Total angular momentum of the celestial body (in kg·m²/s)
+- $a$: Specific angular momentum per unit mass ($a = \dfrac{J}{M c}$, in meters)
+- $r$: Radial distance from the center of the celestial body (in meters)
+- $\theta$: Polar angle in spherical coordinates (radians), $\theta = \dfrac{\pi}{2}$ in the equatorial plane
+- $\tau$: Proper time experienced by the observer (in seconds)
+- $t$: Coordinate time (in seconds)
 
 ## Calculations
 
 ### 1. Moment of Inertia and Angular Momentum
 
-#### Moment of Inertia (\( I \))
+#### Moment of Inertia ($I$)
 
-The moment of inertia \( I \) of a celestial body is calculated using:
+The moment of inertia $I$ of a celestial body is calculated using:
 
-\[
+$$
 I = k M R^2
-\]
+$$
 
-- **Explanation**: \( k \) accounts for the mass distribution within the celestial body. For a solid sphere of uniform density, \( k = \frac{2}{5} \). For celestial bodies, \( k \) varies and is determined empirically.
+- **Explanation**: $k$ accounts for the mass distribution within the celestial body. For a solid sphere of uniform density, $k = \dfrac{2}{5}$. For celestial bodies, $k$ varies and is determined empirically.
 
-#### Total Angular Momentum (\( J \))
+#### Total Angular Momentum ($J$)
 
-The total angular momentum \( J \) is:
+The total angular momentum $J$ is:
 
-\[
+$$
 J = I \omega = k M R^2 \omega
-\]
+$$
 
 - **Explanation**: This represents the rotational momentum of the celestial body.
 
-#### Specific Angular Momentum (\( a \))
+#### Specific Angular Momentum ($a$)
 
-The specific angular momentum \( a \) is:
+The specific angular momentum $a$ is:
 
-\[
-a = \frac{J}{M c}
-\]
+$$
+a = \dfrac{J}{M c}
+$$
 
-- **Explanation**: \( a \) is a parameter in the Kerr metric representing the rotation per unit mass, scaled by the speed of light.
+- **Explanation**: $a$ is a parameter in the Kerr metric representing the rotation per unit mass, scaled by the speed of light.
 
 ### 2. Kerr Metric Components in the Equatorial Plane
 
-In the equatorial plane (\( \theta = \frac{\pi}{2} \)), the Kerr metric simplifies, and the following components are calculated:
+In the equatorial plane ($\theta = \dfrac{\pi}{2}$), the Kerr metric simplifies, and the following components are calculated:
 
-#### \( \Sigma \) and \( \Delta \)
+#### $\Sigma$ and $\Delta$
 
-\[
+$$
 \Sigma = r^2
-\]
+$$
 
-\[
-\Delta = r^2 - \frac{2 G M r}{c^2} + a^2
-\]
+$$
+\Delta = r^2 - \dfrac{2 G M r}{c^2} + a^2
+$$
 
 #### Metric Components
 
-- **\( g_{tt} \)** (Time-Time component):
+- **$g_{tt}$** (Time-Time component):
 
-  \[
-  g_{tt} = -\left(1 - \frac{2 G M r}{r^2 c^2}\right)
-  \]
+  $$
+  g_{tt} = -\left(1 - \dfrac{2 G M r}{r^2 c^2}\right)
+  $$
 
-- **\( g_{t\phi} \)** (Time-Azimuthal component):
+- **$g_{t\phi}$** (Time-Azimuthal component):
 
-  \[
-  g_{t\phi} = -\frac{2 G M a}{r^2 c}
-  \]
+  $$
+  g_{t\phi} = -\dfrac{2 G M a}{r^2 c}
+  $$
 
-- **\( g_{\phi\phi} \)** (Azimuthal-Azimuthal component):
+- **$g_{\phi\phi}$** (Azimuthal-Azimuthal component):
 
-  \[
-  g_{\phi\phi} = r^2 + a^2 + \frac{2 G M a^2}{r c^2}
-  \]
+  $$
+  g_{\phi\phi} = r^2 + a^2 + \dfrac{2 G M a^2}{r c^2}
+  $$
 
 - **Explanation**: These components describe how spacetime is warped by both the mass and rotation of the celestial body.
 
-### 3. Orbital Angular Velocity (\( \omega \))
+### 3. Orbital Angular Velocity ($\omega$)
 
-The orbital angular velocity \( \omega \) for a circular, equatorial, prograde orbit is calculated using:
+The orbital angular velocity $\omega$ for a circular, equatorial, prograde orbit is calculated using:
 
-\[
-\omega = \frac{G M c r - a G M}{c r^3 - \frac{a^2 G M}{c}}
-\]
+$$
+\omega = \dfrac{G M c r - a G M}{c r^3 - \dfrac{a^2 G M}{c}}
+$$
 
 - **Explanation**: This formula determines the rate at which an object needs to move to maintain a stable orbit in the curved spacetime around the rotating mass.
 
-### 4. Time Dilation Factor (\( \frac{d\tau}{dt} \))
+### 4. Time Dilation Factor ($\dfrac{d\tau}{dt}$)
 
-The proper time \( \tau \) experienced by an observer in orbit is related to the coordinate time \( t \) by:
+The proper time $\tau$ experienced by an observer in orbit is related to the coordinate time $t$ by:
 
-\[
-\left( \frac{d\tau}{dt} \right) = \sqrt{ - \left( g_{tt} + 2 g_{t\phi} \omega + g_{\phi\phi} \omega^2 \right) }
-\]
+$$
+\left( \dfrac{d\tau}{dt} \right) = \sqrt{ - \left( g_{tt} + 2 g_{t\phi} \omega + g_{\phi\phi} \omega^2 \right) }
+$$
 
-- **Explanation**: This equation accounts for both gravitational and rotational time dilation effects. The negative sign under the square root ensures that \( d\tau^2 \) remains positive (a proper time-like interval).
+- **Explanation**: This equation accounts for both gravitational and rotational time dilation effects. The negative sign under the square root ensures that $d\tau^2$ remains positive (a proper time-like interval).
 
-### 5. Schwarzschild Radius (\( r_s \))
+### 5. Schwarzschild Radius ($r_s$)
 
 The Schwarzschild radius is given by:
 
-\[
-r_s = \frac{2 G M}{c^2}
-\]
+$$
+r_s = \dfrac{2 G M}{c^2}
+$$
 
-- **Explanation**: This radius defines the event horizon of a non-rotating black hole with mass \( M \). For distances \( r \leq r_s \), the classical concepts of space and time break down.
+- **Explanation**: This radius defines the event horizon of a non-rotating black hole with mass $M$. For distances $r \leq r_s$, the classical concepts of space and time break down.
 
 ### 6. Total Time Difference Between Two Frames
 
-To find the time difference \( \Delta \tau \) experienced between two observers (frames of reference), calculate the time dilation factors \( \left( \frac{d\tau}{dt} \right)_1 \) and \( \left( \frac{d\tau}{dt} \right)_2 \) for each observer using the steps above. Then, for a given coordinate time interval \( \Delta t \):
+To find the time difference $\Delta \tau$ experienced between two observers (frames of reference), calculate the time dilation factors $\left( \dfrac{d\tau}{dt} \right)_1$ and $\left( \dfrac{d\tau}{dt} \right)_2$ for each observer using the steps above. Then, for a given coordinate time interval $\Delta t$:
 
-\[
-\Delta \tau = \Delta t \left( \left( \frac{d\tau}{dt} \right)_1 - \left( \frac{d\tau}{dt} \right)_2 \right)
-\]
+$$
+\Delta \tau = \Delta t \left( \left( \dfrac{d\tau}{dt} \right)_1 - \left( \dfrac{d\tau}{dt} \right)_2 \right)
+$$
 
 - **Explanation**: This computes the difference in proper time experienced by the two observers over the same coordinate time interval.
 
-## Notes on Moment of Inertia Factor (\( k \))
+## Notes on Moment of Inertia Factor ($k$)
 
-- The moment of inertia factor \( k \) varies depending on the mass distribution within the celestial body.
+- The moment of inertia factor $k$ varies depending on the mass distribution within the celestial body.
 - Approximate values for some celestial bodies:
 
-  - **Solid Sphere (Uniform Density)**: \( k = \frac{2}{5} \approx 0.4 \)
-  - **Earth**: \( k \approx 0.3307 \)
-  - **Sun**: \( k \approx 0.070 \)
-  - **Jupiter**: \( k \approx 0.254 \)
+  - **Solid Sphere (Uniform Density)**: $k = \dfrac{2}{5} \approx 0.4$
+  - **Earth**: $k \approx 0.3307$
+  - **Sun**: $k \approx 0.070$
+  - **Jupiter**: $k \approx 0.254$
 
-- **Importance**: Accurate \( k \) values are essential for precise angular momentum calculations, especially for bodies with non-uniform density distributions.
+- **Importance**: Accurate $k$ values are essential for precise angular momentum calculations, especially for bodies with non-uniform density distributions.
 
 ## Assumptions and Limitations
 
-- **Equatorial Plane**: Calculations assume observers are in the equatorial plane (\( \theta = \frac{\pi}{2} \)).
-- **Circular Orbits**: Observers are in circular orbits at a constant radial distance \( r \).
+- **Equatorial Plane**: Calculations assume observers are in the equatorial plane ($\theta = \dfrac{\pi}{2}$).
+- **Circular Orbits**: Observers are in circular orbits at a constant radial distance $r$.
 - **Prograde Orbits**: The orbital motion is in the direction of the celestial body's rotation.
 - **Weak Gravitational Fields**: For most celestial bodies, the gravitational fields are not extreme, allowing for the use of these formulas without significant relativistic corrections beyond the Kerr metric.
 - **Stable Orbits**: Assumes that the orbits are stable and permissible within the Kerr spacetime.
