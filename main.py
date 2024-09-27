@@ -2,31 +2,31 @@ import math
 from decimal import Decimal, getcontext
 
 # Set precision for decimal calculations
-getcontext().prec = 10000
+getcontext().prec = 100
 
 class CelestialBody:
-    def __init__(self, name, mass, radius, angular_velocity, moment_of_inertia_factor=Decimal('0.4')):
+    def __init__(self, name, mass, radius, angular_velocity, moment_of_inertia_factor='0.4'):
         self.name = name
         self.mass = Decimal(mass)  # Mass in kg
-        self.radius = Decimal(radius) * Decimal('1000')  # Convert radius from km to meters
+        self.radius = Decimal(radius) * Decimal('1000')  # Radius in meters
         self.angular_velocity = Decimal(angular_velocity)  # Angular velocity in radians per second
         self.moment_of_inertia_factor = Decimal(moment_of_inertia_factor)
 
 # Constants
-GRAVITATIONAL_CONSTANT = Decimal('6.67430e-11')  # Gravitational constant G in m^3 kg^-1 s^-2
-SPEED_OF_LIGHT = Decimal('299792458')            # Speed of light c in m/s
+GRAVITATIONAL_CONSTANT = Decimal('6.67430e-11')  # G in m³ kg⁻¹ s⁻²
+SPEED_OF_LIGHT = Decimal('299792458')            # c in m/s
 
-# Define preset celestial bodies with angular velocities and moment of inertia factors
-Sun = CelestialBody("Sun", "1.9885e30", "696340", "2.865e-6", moment_of_inertia_factor='0.070')
-Mercury = CelestialBody("Mercury", "3.3011e23", "2439.7", "1.240e-6", moment_of_inertia_factor='0.346')
-Venus = CelestialBody("Venus", "4.8675e24", "6051.8", "2.99e-7", moment_of_inertia_factor='0.337')
-Earth = CelestialBody("Earth", "5.97219e24", "6371", "7.2921150e-5", moment_of_inertia_factor='0.3307')
-Mars = CelestialBody("Mars", "6.4171e23", "3389.5", "7.088e-5", moment_of_inertia_factor='0.366')
-Jupiter = CelestialBody("Jupiter", "1.89813e27", "69911", "1.758e-4", moment_of_inertia_factor='0.254')
-Saturn = CelestialBody("Saturn", "5.68319e26", "58232", "1.637e-4", moment_of_inertia_factor='0.220')
-Uranus = CelestialBody("Uranus", "8.6810e25", "25362", "1.012e-4", moment_of_inertia_factor='0.229')
-Neptune = CelestialBody("Neptune", "1.02413e26", "24622", "1.083e-4", moment_of_inertia_factor='0.228')
-R136a1 = CelestialBody("R136a1", "4.4e32", "3885000", "0", moment_of_inertia_factor='0.070')  # Mass and radius approximate
+# Define celestial bodies
+Sun = CelestialBody("Sun", "1.9885e30", "696340", "2.865e-6", '0.070')
+Mercury = CelestialBody("Mercury", "3.3011e23", "2439.7", "1.240e-6", '0.346')
+Venus = CelestialBody("Venus", "4.8675e24", "6051.8", "2.99e-7", '0.337')
+Earth = CelestialBody("Earth", "5.97219e24", "6371", "7.2921150e-5", '0.3307')
+Mars = CelestialBody("Mars", "6.4171e23", "3389.5", "7.088e-5", '0.366')
+Jupiter = CelestialBody("Jupiter", "1.89813e27", "69911", "1.758e-4", '0.254')
+Saturn = CelestialBody("Saturn", "5.68319e26", "58232", "1.637e-4", '0.220')
+Uranus = CelestialBody("Uranus", "8.6810e25", "25362", "1.012e-4", '0.229')
+Neptune = CelestialBody("Neptune", "1.02413e26", "24622", "1.083e-4", '0.228')
+R136a1 = CelestialBody("R136a1", "4.4e32", "3885000", "0", '0.070')  # Approximate values
 
 celestial_bodies = [Sun, Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, R136a1]
 
@@ -36,9 +36,9 @@ def calculate_angular_momentum(body):
     J = I * omega
     where I = k * M * R^2 (moment of inertia)
     """
-    moment_of_inertia = body.moment_of_inertia_factor * body.mass * body.radius**2
-    angular_momentum = moment_of_inertia * body.angular_velocity
-    return angular_momentum
+    I = body.moment_of_inertia_factor * body.mass * body.radius**2
+    J = I * body.angular_velocity
+    return J
 
 def calculate_specific_angular_momentum(body):
     """
@@ -48,88 +48,54 @@ def calculate_specific_angular_momentum(body):
     a = J / (body.mass * SPEED_OF_LIGHT)
     return a
 
-def kerr_metric_components(body, r):
-    """
-    Compute Kerr metric components at theta = pi/2 (equatorial plane)
-    """
-    G = GRAVITATIONAL_CONSTANT
-    c = SPEED_OF_LIGHT
-    M = body.mass
-    a = calculate_specific_angular_momentum(body)
-    # At theta = pi/2
-    Sigma = r**2
-    Delta = r**2 - (2 * G * M * r) / c**2 + a**2
-
-    # Metric components
-    g_tt = -(1 - (2 * G * M * r) / (r**2 * c**2))
-    g_tphi = -(2 * G * M * a) / (r**2 * c)
-    g_phiphi = r**2 + a**2 + (2 * G * M * a**2) / (r * c**2)
-
-    return g_tt, g_tphi, g_phiphi
-
-def calculate_orbital_angular_velocity(body, r):
-    """
-    Calculate orbital angular velocity omega for a circular equatorial orbit
-    """
-    G = GRAVITATIONAL_CONSTANT
-    c = SPEED_OF_LIGHT
-    M = body.mass
-    a = calculate_specific_angular_momentum(body)
-    # Compute omega using the exact Kerr metric formula for prograde orbits
-    numerator = G * M * c * r - a * G * M
-    denominator = c * r**3 - a**2 * G * M / c
-    omega = numerator / denominator
-    return omega
-
 def calculate_time_dilation_factor(body, r):
     """
-    Calculate time dilation factor d_tau/dt for an observer in a circular equatorial orbit
+    Calculate time dilation factor using the weak-field approximation.
     """
-    g_tt, g_tphi, g_phiphi = kerr_metric_components(body, r)
-    omega = calculate_orbital_angular_velocity(body, r)
-    # Compute the expression inside the square root
-    expression = g_tt + 2 * g_tphi * omega + g_phiphi * omega**2
-    if expression >= 0:
-        # This indicates an error in calculations or an unphysical orbit
-        raise ValueError("Invalid time-like interval: expression under square root is non-negative.")
-    time_dilation_factor = Decimal(math.sqrt(-expression))
+    G = GRAVITATIONAL_CONSTANT
+    c = SPEED_OF_LIGHT
+    M = body.mass
+
+    # Gravitational potential
+    phi = -G * M / r
+    gravitational_factor = 1 + phi / c**2
+
+    # Kinetic energy per unit mass
+    if r > body.radius:
+        # For a satellite in orbit
+        v = (G * M / r).sqrt()
+    else:
+        # For a point on the surface
+        v = body.angular_velocity * r
+    kinetic_factor = 1 - (v**2) / (2 * c**2)
+
+    time_dilation_factor = gravitational_factor * kinetic_factor
+
     return time_dilation_factor
 
-# Function to calculate Schwarzschild radius
-def calculate_schwarzschild_radius(body):
-    """
-    Calculate the Schwarzschild radius using:
-    r_s = (2 * G * M) / c^2
-    """
-    return (2 * GRAVITATIONAL_CONSTANT * body.mass) / (SPEED_OF_LIGHT**2)
-
-# Function to format time difference in a human-readable format
 def format_time_difference(time_diff):
     """
     Convert the time difference into an appropriate time unit for readability.
     """
     abs_diff = abs(time_diff)
     if abs_diff >= Decimal('86400'):
-        formatted = f"{abs(time_diff) / Decimal('86400'):.6f} days"
+        formatted = f"{abs_diff / Decimal('86400'):.6f} days"
     elif abs_diff >= Decimal('3600'):
-        formatted = f"{abs(time_diff) / Decimal('3600'):.6f} hours"
+        formatted = f"{abs_diff / Decimal('3600'):.6f} hours"
     elif abs_diff >= Decimal('60'):
-        formatted = f"{abs(time_diff) / Decimal('60'):.6f} minutes"
+        formatted = f"{abs_diff / Decimal('60'):.6f} minutes"
     elif abs_diff >= Decimal('1'):
-        formatted = f"{abs(time_diff):.6f} seconds"
+        formatted = f"{abs_diff:.6f} seconds"
     elif abs_diff >= Decimal('1e-3'):
-        formatted = f"{abs(time_diff) * Decimal('1e3'):.6f} milliseconds"
+        formatted = f"{(abs_diff * Decimal('1e3')):.6f} milliseconds"
     elif abs_diff >= Decimal('1e-6'):
-        formatted = f"{abs(time_diff) * Decimal('1e6'):.6f} microseconds"
+        formatted = f"{(abs_diff * Decimal('1e6')):.6f} microseconds"
     elif abs_diff >= Decimal('1e-9'):
-        formatted = f"{abs(time_diff) * Decimal('1e9'):.6f} nanoseconds"
-    elif abs_diff >= Decimal('1e-12'):
-        formatted = f"{abs(time_diff) * Decimal('1e12'):.6f} picoseconds"
+        formatted = f"{(abs_diff * Decimal('1e9')):.6f} nanoseconds"
     else:
-        formatted = f"{abs(time_diff) * Decimal('1e15'):.6f} femtoseconds"  # For extremely small values
+        formatted = f"{(abs_diff * Decimal('1e12')):.6f} picoseconds"
     return formatted
 
-# Function to get valid numeric input from the user
 def get_valid_number(prompt, default=None):
     """
     Prompt the user for a number, optionally with a default value.
@@ -179,18 +145,11 @@ else:
 
 total_distance_1 = selected_body_1.radius + distance_from_surface_1
 
-# Check if within Schwarzschild radius
-schwarzschild_radius_1 = calculate_schwarzschild_radius(selected_body_1)
-if total_distance_1 <= schwarzschild_radius_1:
-    print("Error: The total distance is within the Schwarzschild radius for the first frame of reference.")
-    exit()
+# Calculate specific angular momentum for the first frame (even if not used yet)
+specific_angular_momentum_1 = calculate_specific_angular_momentum(selected_body_1)
 
 # Calculate time dilation factor for the first frame
-try:
-    total_time_dilation_1 = calculate_time_dilation_factor(selected_body_1, total_distance_1)
-except ValueError as e:
-    print(f"Error in time dilation calculation for the first frame: {e}")
-    exit()
+total_time_dilation_1 = calculate_time_dilation_factor(selected_body_1, total_distance_1)
 
 # Second frame of reference
 print("\nSecond frame of reference")
@@ -215,21 +174,14 @@ else:
 
 total_distance_2 = selected_body_2.radius + distance_from_surface_2
 
-# Check if within Schwarzschild radius
-schwarzschild_radius_2 = calculate_schwarzschild_radius(selected_body_2)
-if total_distance_2 <= schwarzschild_radius_2:
-    print("Error: The total distance is within the Schwarzschild radius for the second frame of reference.")
-    exit()
+# Calculate specific angular momentum for the second frame (even if not used yet)
+specific_angular_momentum_2 = calculate_specific_angular_momentum(selected_body_2)
 
 # Calculate time dilation factor for the second frame
-try:
-    total_time_dilation_2 = calculate_time_dilation_factor(selected_body_2, total_distance_2)
-except ValueError as e:
-    print(f"Error in time dilation calculation for the second frame: {e}")
-    exit()
+total_time_dilation_2 = calculate_time_dilation_factor(selected_body_2, total_distance_2)
 
 # Calculate time difference between the two frames
-time_difference = time_interval * (total_time_dilation_1 - total_time_dilation_2)
+time_difference = time_interval * (total_time_dilation_2 - total_time_dilation_1)
 
 # Format and display the time difference
 time_diff_formatted = format_time_difference(time_difference)
